@@ -1,73 +1,253 @@
+
 package com.tayyibia.academy
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
+private val Green = Color(0xFF075B43)
+private val Gold = Color(0xFFD6AE55)
+private val Cream = Color(0xFFFFF9ED)
+private val DarkGreen = Color(0xFF063D30)
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { AcademyApp() }
+        setContent {
+            TayyibiaApp()
+        }
     }
 }
 
 @Composable
-fun AcademyApp() {
-    var email by remember { mutableStateOf("bsft3001@gmail.com") }
-    var password by remember { mutableStateOf("") }
-    var message by remember { mutableStateOf("مرکزی منتظم اپنے اکاؤنٹ سے لاگ اِن کریں") }
+fun TayyibiaApp() {
+    var email by remember {
+        mutableStateOf("bsft3001@gmail.com")
+    }
+    var password by remember {
+        mutableStateOf("")
+    }
+    var message by remember {
+        mutableStateOf("")
+    }
 
-    MaterialTheme {
-        Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-            Column(
-                modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(24.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+    MaterialTheme(
+        colorScheme = darkColorScheme(
+            primary = Green,
+            secondary = Gold,
+            background = DarkGreen,
+            surface = Color(0xFF104B3C)
+        )
+    ) {
+        CompositionLocalProvider(
+            LocalLayoutDirection provides LayoutDirection.Rtl
+        ) {
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = DarkGreen
             ) {
-                Text("دارالعلوم طیبیہ طاہریہ اکیڈمی", fontSize = 25.sp)
-                Spacer(Modifier.height(8.dp))
-                Text("DAR UL ULOOM TAYYIBIA TAHIRIA ACADEMY", fontSize = 12.sp)
-                Spacer(Modifier.height(28.dp))
-                Text("مرکزی منتظم کا لاگ اِن", style = MaterialTheme.typography.titleLarge)
-                Spacer(Modifier.height(16.dp))
-                OutlinedTextField(
-                    value = email, onValueChange = { email = it },
-                    label = { Text("ای میل") }, singleLine = true,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Spacer(Modifier.height(12.dp))
-                OutlinedTextField(
-                    value = password, onValueChange = { password = it },
-                    label = { Text("پاس ورڈ") }, singleLine = true,
-                    visualTransformation = PasswordVisualTransformation(),
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Spacer(Modifier.height(18.dp))
-                Button(onClick = {
-                    message = "یہ ابتدائی اسکرین ہے۔ Supabase کی تفصیلات شامل ہونے کے بعد اصل لاگ اِن فعال ہوگا۔"
-                }, modifier = Modifier.fillMaxWidth()) {
-                    Text("لاگ اِن")
-                }
-                Spacer(Modifier.height(12.dp))
-                Text(message, style = MaterialTheme.typography.bodyMedium)
-                Spacer(Modifier.height(28.dp))
-                Text("انتظامی شعبے", style = MaterialTheme.typography.titleMedium)
-                listOf("طلبہ کا ریکارڈ", "اساتذہ کا ریکارڈ", "طلبہ کی حاضری",
-                    "اساتذہ کی حاضری", "فیس اور رسیدیں", "سبق، سبقی اور منزل",
-                    "امتحانات اور نتائج", "رپورٹس", "صارفین اور اجازتیں").forEach {
-                    ElevatedCard(Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
-                        Text(it, Modifier.fillMaxWidth().padding(16.dp))
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState())
+                        .padding(22.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+
+                    Spacer(modifier = Modifier.height(25.dp))
+
+                    Text(
+                        text = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+                        color = Gold,
+                        fontSize = 21.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+
+                    Spacer(modifier = Modifier.height(25.dp))
+
+                    Text(
+                        text = "دارالعلوم",
+                        color = Cream,
+                        fontSize = 34.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+
+                    Text(
+                        text = "طیبیہ طاہریہ اکیڈمی",
+                        color = Gold,
+                        fontSize = 29.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center
+                    )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    Text(
+                        text = "مدرسہ انتظامی نظام",
+                        color = Cream,
+                        fontSize = 17.sp
+                    )
+
+                    Spacer(modifier = Modifier.height(35.dp))
+
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(22.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = Cream
+                        )
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(22.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+
+                            Text(
+                                text = "مرکزی منتظم کا لاگ اِن",
+                                color = Green,
+                                fontSize = 23.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+
+                            Spacer(modifier = Modifier.height(10.dp))
+
+                            Text(
+                                text = "اپنے اکاؤنٹ کی تفصیلات درج کریں",
+                                color = Color.DarkGray,
+                                fontSize = 14.sp
+                            )
+
+                            Spacer(modifier = Modifier.height(25.dp))
+
+                            Text(
+                                text = "ای میل ایڈریس",
+                                color = Green,
+                                modifier = Modifier.fillMaxWidth(),
+                                fontWeight = FontWeight.Bold
+                            )
+
+                            CompositionLocalProvider(
+                                LocalLayoutDirection provides LayoutDirection.Ltr
+                            ) {
+                                OutlinedTextField(
+                                    value = email,
+                                    onValueChange = {
+                                        email = it
+                                        message = ""
+                                    },
+                                    modifier = Modifier.fillMaxWidth(),
+                                    singleLine = true,
+                                    placeholder = {
+                                        Text("Email address")
+                                    },
+                                    keyboardOptions = KeyboardOptions(
+                                        keyboardType = KeyboardType.Email
+                                    )
+                                )
+                            }
+
+                            Spacer(modifier = Modifier.height(16.dp))
+
+                            Text(
+                                text = "پاس ورڈ",
+                                color = Green,
+                                modifier = Modifier.fillMaxWidth(),
+                                fontWeight = FontWeight.Bold
+                            )
+
+                            OutlinedTextField(
+                                value = password,
+                                onValueChange = {
+                                    password = it
+                                    message = ""
+                                },
+                                modifier = Modifier.fillMaxWidth(),
+                                singleLine = true,
+                                placeholder = {
+                                    Text("Password")
+                                },
+                                visualTransformation =
+                                    PasswordVisualTransformation(),
+                                keyboardOptions = KeyboardOptions(
+                                    keyboardType = KeyboardType.Password
+                                )
+                            )
+
+                            Spacer(modifier = Modifier.height(25.dp))
+
+                            Button(
+                                onClick = {
+                                    message =
+                                        if (email.isBlank() || password.isBlank()) {
+                                            "براہ کرم ای میل اور پاس ورڈ درج کریں"
+                                        } else {
+                                            "لاگ اِن سسٹم ابھی Supabase سے منسلک نہیں ہوا۔"
+                                        }
+                                },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(54.dp),
+                                shape = RoundedCornerShape(12.dp),
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Green
+                                )
+                            ) {
+                                Text(
+                                    text = "لاگ اِن کریں",
+                                    fontSize = 19.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+
+                            if (message.isNotEmpty()) {
+                                Spacer(modifier = Modifier.height(15.dp))
+                                Text(
+                                    text = message,
+                                    color = Green,
+                                    textAlign = TextAlign.Center,
+                                    fontSize = 14.sp
+                                )
+                            }
+                        }
                     }
+
+                    Spacer(modifier = Modifier.height(30.dp))
+
+                    Text(
+                        text = "اللہ تعالیٰ اس ادارے کو ترقی عطا فرمائے",
+                        color = Gold,
+                        fontSize = 15.sp,
+                        textAlign = TextAlign.Center
+                    )
+
+                    Spacer(modifier = Modifier.height(15.dp))
+
+                    Text(
+                        text = "© Dar ul Uloom Tayyibia Tahiria Academy",
+                        color = Cream,
+                        fontSize = 11.sp,
+                        textAlign = TextAlign.Center
+                    )
                 }
             }
         }
