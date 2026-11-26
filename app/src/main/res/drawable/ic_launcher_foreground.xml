@@ -1,27 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="108dp"
-    android:height="108dp"
-    android:viewportWidth="108"
-    android:viewportHeight="108">
-
-    <path
-        android:fillColor="#D4AF37"
-        android:pathData="M18,88 L18,58 L30,58 L30,43 L39,43 L39,58 L69,58 L69,43 L78,43 L78,58 L90,58 L90,88 Z"/>
-
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M34,58 C34,39 45,27 54,20 C63,27 74,39 74,58 Z"/>
-
-    <path
-        android:fillColor="#D4AF37"
-        android:pathData="M49,20 L54,10 L59,20 Z"/>
-
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M45,88 L45,70 C45,58 63,58 63,70 L63,88 Z"/>
-
-    <path
-        android:fillColor="#D4AF37"
-        android:pathData="M52,88 L52,72 L56,72 L56,88 Z"/>
-</vector>
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/madrasa"
+    android:gravity="fill" />
