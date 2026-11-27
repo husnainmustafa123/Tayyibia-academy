@@ -1,4 +1,3 @@
-
 package com.tayyibia.academy
 
 import android.os.Bundle
